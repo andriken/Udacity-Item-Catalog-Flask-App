@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h2>Edit Item</h2>
+	<form action="" method="post" style="max-width:300px">
+	    <div class="form-group">
+	      <label for="title">Title:</label>
+	      <input type="text" class="form-control" id="title" placeholder="{{ item_obj.title }}" name="title">
+		  <label for="description">Description:</label>
+	      <input type="text" class="form-control" id="description" placeholder="{{ item_obj.description }}" name="description">
+		  <label for="sel1">Select one Category:</label>
+		  <p hidden class="hiddencat">{{ item_obj.category.title }}</p>
+		  <select class="form-control" id="sel1" name="category">
+		  {% for category in categories %}
+			<option>{{ category.title }}</option>
+		  {% endfor %}
+		  </select>
+	    </div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+{% endblock %}
+
+{% block script %}
+	$(".form-control").children().each(function(){
+    	if($(this).text() == $(".hiddencat").html()){
+        	$(this).prop("selected", true)
+        }
+    }) 
+{% endblock %}

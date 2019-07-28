@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h3>{{ category }} Items</h3>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-success alert-dismissible">
+				  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				  <strong>{{ message }}</strong>
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<div class="list-group">
+	{% for item in items %}
+		<a href="{{ url_for('categoryItem', category=item.category.title, item=item.title) }}" class="list-group-item">{{ item.title | capitalize }}<span class="badge">{{ item.category.title }}</span></a>
+	{% endfor %}
+	</div>
+{% endblock %}

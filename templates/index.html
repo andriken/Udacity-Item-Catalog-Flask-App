@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h3>Latest Items</h3>
+	<div class="list-group">
+	{% for item in items %}
+		<a href="{{ url_for('categoryItem', category=item.category.title, item=item.title) }}" class="list-group-item">{{ item.title | capitalize }}<span class="badge">{{ item.category.title }}</span></a>
+	{% endfor %}
+	</div>
+{% endblock %}
